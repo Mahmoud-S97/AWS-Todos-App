@@ -22,7 +22,7 @@ const SignUpVerification = (props: any): JSX.Element => {
       Alert.alert('', 'Account has been verified!', [
         {
           text: 'Login to continue',
-          onPress: () => props.navigation.replace('Login')
+          onPress: () => props.navigation.popTo('Login')
         }
       ]);
     } catch (error: any) {

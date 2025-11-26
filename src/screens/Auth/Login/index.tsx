@@ -1,13 +1,15 @@
-import React, { useState, JSX } from 'react';
+import React, { useState, JSX, useContext } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { signIn, fetchAuthSession } from 'aws-amplify/auth';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
-import { getErrorMessage, saveDataToAsyncStorage } from '../../../utils';
-import { LOCAL_STORAGE_KEYS } from '../../../constants/AWS/auth/localStorageKeys';
+import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
+import { AuthContext } from '../../../context/Auth';
 
 const LoginScreen = ({ navigation }: any): JSX.Element => {
+
+  const {login} = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,8 +30,7 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
           }
         ]);
         const userSession = await fetchAuthSession();
-        await saveDataToAsyncStorage(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, userSession.credentials?.sessionToken?.toString());
-        await saveDataToAsyncStorage(LOCAL_STORAGE_KEYS.IS_LOGGED_IN, results.isSignedIn.toString());
+        await login(userSession.credentials?.sessionToken, results.isSignedIn);
       }
     } catch (error: any) {
       getErrorMessage(error);
