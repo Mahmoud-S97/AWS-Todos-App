@@ -1,3 +1,4 @@
+import './src/global.css'
 import './src/awsConfig';
 import React, { JSX } from 'react';
 import RootNavigator from './src/navigation/RootNavigator';

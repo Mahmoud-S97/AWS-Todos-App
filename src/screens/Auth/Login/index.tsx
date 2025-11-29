@@ -1,5 +1,5 @@
 import React, { useState, JSX, useContext } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { signIn, fetchAuthSession } from 'aws-amplify/auth';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { getErrorMessage } from '../../../utils';
@@ -52,11 +52,12 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
   if (loading) return <Spinner />
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: APP_THEME.backgroundColor }} showsVerticalScrollIndicator={false}>
-      <View style={styles.screen}>
-        <View style={styles.container}>
+    <ScrollView className="flex-1 bg-orange-100" showsVerticalScrollIndicator={false}>
+      <View className='flex-1 items-center justify-center'>
+        <View className='w-[95%] h-full pb-[40] self-center mt-[100] items-center justify-center'>
+          <Text className='text-3xl text-gray-800 font-bold mb-[40]'>Welcome Back!</Text>
           <TextInput
-            style={styles.textInputStyle}
+            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 text-start'
             placeholderTextColor={'#444444'}
             placeholder='Email'
             autoCapitalize='none'
@@ -64,7 +65,7 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
             onChangeText={setEmail}
           />
           <TextInput
-            style={styles.textInputStyle}
+            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 mb-[20] text-start'
             placeholderTextColor={'#444444'}
             placeholder='Password'
             secureTextEntry
@@ -72,64 +73,22 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
             value={password}
             onChangeText={setPassword}
           />
-          <TouchableOpacity style={[styles.loginBtns, { marginTop: 40 }]} onPress={loginHandler}>
-            <Text>Login</Text>
+          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, {borderWidth: 1}]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' onPress={loginHandler}>
+            <Text className='text-xl text-black-600'>Login</Text>
           </TouchableOpacity>
-          <Text>_______ Or ______</Text>
-          <TouchableOpacity style={styles.loginBtns} onPress={loginWithGoogle}>
-            <Text>Continue with Google</Text>
+          <View className='w-[95%] self-center items-center justify-between flex-row my-[10]'>
+            <View className='w-[45%] h-[1] bg-gray-400' />
+            <Text className='w-[10%] font-bold text-gray-700 text-center'>Or</Text>
+            <View className='w-[45%] h-[1] bg-gray-400' />
+          </View>
+          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, {borderWidth: 1}]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-white border border-gray-400 rounded-lg' onPress={loginWithGoogle}>
+            <Text className='text-xl text-black-600'>Continue with Google</Text>
           </TouchableOpacity>
-          <Text style={styles.signUpAskText} onPress={() => navigation.navigate('SignUp')}>Don't have an account? <Text style={styles.signUpText}>Sign Up</Text></Text>
+          <Text className='text-l text-orange-400 mt-[20]' onPress={() => navigation.navigate('SignUp')}>Don't have an account? <Text className='text-l text-gray-700 font-bold'>Sign Up</Text></Text>
         </View>
       </View>
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  container: {
-    width: '95%',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50,
-    paddingBottom: 40
-  },
-  textInputStyle: {
-    width: '95%',
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-    alignSelf: 'center',
-    padding: 8
-  },
-  placeholderStyles: {
-    color: '#444444'
-  },
-  loginBtns: {
-    width: '95%',
-    alignSelf: 'center',
-    height: 50,
-    backgroundColor: 'orange',
-    marginVertical: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  signUpAskText: {
-    color: 'orange',
-    fontSize: 15,
-    marginTop: 20
-  },
-  signUpText: {
-    color: 'black',
-    fontWeight: '500',
-    fontSize: 16
-  }
-});
 
 export default LoginScreen;
