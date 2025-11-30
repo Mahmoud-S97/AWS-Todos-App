@@ -1,5 +1,5 @@
 import React, { useState, JSX } from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
 import { confirmSignUp } from 'aws-amplify/auth';
 import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
@@ -56,41 +56,5 @@ const SignUpVerification = (props: any): JSX.Element => {
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  container: {
-    width: '95%',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50,
-    paddingBottom: 40
-  },
-  textInputStyle: {
-    width: '95%',
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-    alignSelf: 'center',
-    padding: 8
-  },
-  placeholderStyles: {
-    color: '#444444'
-  },
-  loginBtns: {
-    width: '95%',
-    alignSelf: 'center',
-    height: 50,
-    backgroundColor: 'orange',
-    marginVertical: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
 
 export default SignUpVerification;
