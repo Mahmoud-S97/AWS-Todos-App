@@ -1,9 +1,10 @@
 import React, { useState, JSX } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView, Alert } from 'react-native';
 import { confirmSignUp } from 'aws-amplify/auth';
 import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
+import MainButton from '../../../components/Global/MainButton';
 
 const SignUpVerification = (props: any): JSX.Element => {
 
@@ -36,19 +37,20 @@ const SignUpVerification = (props: any): JSX.Element => {
 
   return (
 
-    <ScrollView style={{ flex: 1, backgroundColor: APP_THEME.backgroundColor }} showsVerticalScrollIndicator={false}>
-      <View style={styles.screen}>
-        <View style={styles.container}>
+    <ScrollView className="flex-1 bg-orange-100" showsVerticalScrollIndicator={false}>
+      <View className='flex-1 items-center justify-center'>
+        <View className='w-[95%] h-full pb-[40] self-center mt-[100] items-center justify-center'>
+          <Text className='text-3xl text-gray-800 font-bold mb-[40]'>Code Verification</Text>
           <TextInput
-            style={styles.textInputStyle}
+            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 mb-[30] text-start'
             placeholderTextColor={'#444444'}
             placeholder='Verify code from 6 digits'
             value={verificationCode}
             onChangeText={setVerificationCode}
           />
-          <TouchableOpacity style={[styles.loginBtns, { marginTop: 40 }]} onPress={verifySignUpCode}>
-            <Text>Confirm Code</Text>
-          </TouchableOpacity>
+          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' textClassName='text-xl text-gray-900' onPress={verifySignUpCode}>
+            Confirm Code
+          </MainButton>
         </View>
       </View>
     </ScrollView>
