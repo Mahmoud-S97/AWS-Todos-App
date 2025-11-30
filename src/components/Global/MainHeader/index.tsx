@@ -1,6 +1,5 @@
 import React, {JSX, ReactNode} from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import AppIcon from '../AppIcon';
+import { View } from 'react-native';
 
 interface MainHeaderTypes {
     children: ReactNode,

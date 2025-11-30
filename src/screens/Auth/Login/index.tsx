@@ -1,11 +1,12 @@
 import React, { useState, JSX, useContext } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
 import { signIn, fetchAuthSession } from 'aws-amplify/auth';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
 import { AuthContext } from '../../../context/Auth';
+import MainButton from '../../../components/Global/MainButton';
 
 
 const LoginScreen = ({ navigation }: any): JSX.Element => {
@@ -66,7 +67,7 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
             onChangeText={setEmail}
           />
           <TextInput
-            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 mb-[20] text-start'
+            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 mb-[30] text-start'
             placeholderTextColor={'#444444'}
             placeholder='Password'
             secureTextEntry
@@ -74,17 +75,17 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
             value={password}
             onChangeText={setPassword}
           />
-          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' onPress={loginHandler}>
-            <Text className='text-xl text-black-600 font-[500]'>Login</Text>
-          </TouchableOpacity>
+          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' textClassName='text-xl text-gray-900' onPress={loginHandler}>
+            Login
+          </MainButton>
           <View className='w-[95%] self-center items-center justify-between flex-row my-[10]'>
             <View className='w-[45%] h-[1] bg-gray-400' />
             <Text className='w-[10%] font-bold text-gray-700 text-center'>Or</Text>
             <View className='w-[45%] h-[1] bg-gray-400' />
           </View>
-          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-white border border-gray-400 rounded-lg' onPress={loginWithGoogle}>
-            <Text className='text-xl text-black-600 font-[500]'>Continue with Google</Text>
-          </TouchableOpacity>
+          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-[#e55039] border border-gray-400 rounded-lg' textClassName='text-xl text-white' icon={{ name: 'google-plus', className: 'text-white me-3' }} onPress={loginWithGoogle}>
+            Continue with Google
+          </MainButton>
           <Text className='text-l text-orange-400 mt-[20]' onPress={() => navigation.navigate('SignUp')}>Don't have an account? <Text className='text-l text-gray-700 font-bold'>Sign Up</Text></Text>
         </View>
       </View>
@@ -92,4 +93,4 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
   )
 }
 
-export default LoginScreen;
+export default LoginScreen; 
