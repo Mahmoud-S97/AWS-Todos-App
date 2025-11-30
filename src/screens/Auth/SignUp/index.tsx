@@ -5,6 +5,8 @@ import { getErrorMessage } from '../../../utils';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
+import MainHeader from '../../../components/Global/MainHeader';
+import AppIcon from '../../../components/Global/AppIcon';
 
 const SignUpScreen = ({ navigation }: any): JSX.Element => {
 
@@ -12,6 +14,7 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const goBack = () => navigation.goBack();
 
   const SignUpHandler = async () => {
     try {
@@ -48,14 +51,20 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
     console.log('SignUp with Google Auth');
   }
 
-  if(loading) return <Spinner />
+  if (loading) return <Spinner />
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: APP_THEME.backgroundColor }} showsVerticalScrollIndicator={false}>
-      <View style={styles.screen}>
-        <View style={styles.container}>
+    <ScrollView className="flex-1 bg-orange-100" showsVerticalScrollIndicator={false}>
+      <MainHeader>
+        <TouchableOpacity activeOpacity={0.6} onPress={goBack}>
+          <AppIcon name='chevron-left' size={27} className='text-gray-700 mt-[5]' />
+        </TouchableOpacity>
+      </MainHeader>
+      <View className='flex-1 items-center justify-center'>
+        <View className='w-[95%] h-full pb-[40] self-center mt-[100] items-center justify-center'>
+          <Text className='text-3xl text-gray-800 font-bold mb-[40]'>Sign Up to Continue</Text>
           <TextInput
-            style={styles.textInputStyle}
+            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 text-start'
             placeholderTextColor={'#444444'}
             placeholder='Email'
             autoCapitalize='none'
@@ -63,7 +72,7 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
             onChangeText={setEmail}
           />
           <TextInput
-            style={styles.textInputStyle}
+            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 mb-[20] text-start'
             placeholderTextColor={'#444444'}
             placeholder='Password'
             secureTextEntry
@@ -71,64 +80,22 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
             value={password}
             onChangeText={setPassword}
           />
-          <TouchableOpacity style={[styles.signUpBtns, { marginTop: 40 }]} onPress={SignUpHandler}>
-            <Text>Sign Up</Text>
+          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' onPress={SignUpHandler}>
+            <Text className='text-xl text-black-600 font-[500]'>Sign Up</Text>
           </TouchableOpacity>
-          <Text>_______ Or ______</Text>
-          <TouchableOpacity style={styles.signUpBtns} onPress={SignUpWithGoogle}>
-            <Text>Continue with Google</Text>
+          <View className='w-[95%] self-center items-center justify-between flex-row my-[10]'>
+            <View className='w-[45%] h-[1] bg-gray-400' />
+            <Text className='w-[10%] font-bold text-gray-700 text-center'>Or</Text>
+            <View className='w-[45%] h-[1] bg-gray-400' />
+          </View>
+          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-white border border-gray-400 rounded-lg' onPress={SignUpWithGoogle}>
+            <Text className='text-xl text-black-600 font-[500]'>Continue with Google</Text>
           </TouchableOpacity>
-          <Text style={styles.signInAskText} onPress={() => navigation.popTo('Login')}>Have an account? <Text style={styles.signInText}>Login</Text></Text>
+          <Text className='text-l text-orange-400 mt-[20]' onPress={() => navigation.popTo('Login')}>Have an account? <Text className='text-l text-gray-700 font-bold'>Login</Text></Text>
         </View>
       </View>
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  container: {
-    width: '95%',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 50,
-    paddingBottom: 40
-  },
-  textInputStyle: {
-    width: '95%',
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: 'gray',
-    alignSelf: 'center',
-    padding: 8
-  },
-  placeholderStyles: {
-    color: '#444444'
-  },
-  signUpBtns: {
-    width: '95%',
-    alignSelf: 'center',
-    height: 50,
-    backgroundColor: 'orange',
-    marginVertical: 15,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  signInAskText: {
-    color: 'orange',
-    fontSize: 15,
-    marginTop: 20
-  },
-  signInText: {
-    color: 'black',
-    fontWeight: '500',
-    fontSize: 16
-  }
-});
 
 export default SignUpScreen;

@@ -7,9 +7,10 @@ import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
 import { AuthContext } from '../../../context/Auth';
 
+
 const LoginScreen = ({ navigation }: any): JSX.Element => {
 
-  const {login} = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -73,16 +74,16 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
             value={password}
             onChangeText={setPassword}
           />
-          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, {borderWidth: 1}]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' onPress={loginHandler}>
-            <Text className='text-xl text-black-600'>Login</Text>
+          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' onPress={loginHandler}>
+            <Text className='text-xl text-black-600 font-[500]'>Login</Text>
           </TouchableOpacity>
           <View className='w-[95%] self-center items-center justify-between flex-row my-[10]'>
             <View className='w-[45%] h-[1] bg-gray-400' />
             <Text className='w-[10%] font-bold text-gray-700 text-center'>Or</Text>
             <View className='w-[45%] h-[1] bg-gray-400' />
           </View>
-          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, {borderWidth: 1}]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-white border border-gray-400 rounded-lg' onPress={loginWithGoogle}>
-            <Text className='text-xl text-black-600'>Continue with Google</Text>
+          <TouchableOpacity activeOpacity={0.6} style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] h-[50] self-center items-center justify-center my-[15] bg-white border border-gray-400 rounded-lg' onPress={loginWithGoogle}>
+            <Text className='text-xl text-black-600 font-[500]'>Continue with Google</Text>
           </TouchableOpacity>
           <Text className='text-l text-orange-400 mt-[20]' onPress={() => navigation.navigate('SignUp')}>Don't have an account? <Text className='text-l text-gray-700 font-bold'>Sign Up</Text></Text>
         </View>

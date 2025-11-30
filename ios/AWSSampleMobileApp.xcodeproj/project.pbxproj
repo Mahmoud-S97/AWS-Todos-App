@@ -23,6 +23,25 @@
 		5709B34CF0A7D63546082F79 /* Pods-AWSSampleMobileApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AWSSampleMobileApp.release.xcconfig"; path = "Target Support Files/Pods-AWSSampleMobileApp/Pods-AWSSampleMobileApp.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-AWSSampleMobileApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AWSSampleMobileApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AWSSampleMobileApp/AppDelegate.swift; sourceTree = "<group>"; };
+		7C0B3C7F2EDBBE0700A6C3F6 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		7C0B3C802EDBBE0700A6C3F6 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		7C0B3C812EDBBE0700A6C3F6 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		7C0B3C822EDBBE0700A6C3F6 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		7C0B3C832EDBBE0700A6C3F6 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		7C0B3C842EDBBE0700A6C3F6 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		7C0B3C852EDBBE0700A6C3F6 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		7C0B3C862EDBBE0700A6C3F6 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		7C0B3C872EDBBE0700A6C3F6 /* FontAwesome6_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome6_Brands.ttf; sourceTree = "<group>"; };
+		7C0B3C882EDBBE0700A6C3F6 /* FontAwesome6_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome6_Regular.ttf; sourceTree = "<group>"; };
+		7C0B3C892EDBBE0700A6C3F6 /* FontAwesome6_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome6_Solid.ttf; sourceTree = "<group>"; };
+		7C0B3C8A2EDBBE0700A6C3F6 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		7C0B3C8B2EDBBE0700A6C3F6 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		7C0B3C8C2EDBBE0700A6C3F6 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		7C0B3C8D2EDBBE0700A6C3F6 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		7C0B3C8E2EDBBE0700A6C3F6 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		7C0B3C8F2EDBBE0700A6C3F6 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		7C0B3C902EDBBE0700A6C3F6 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		7C0B3C912EDBBE0700A6C3F6 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AWSSampleMobileApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -60,6 +79,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7C0B3C922EDBBE0700A6C3F6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7C0B3C7F2EDBBE0700A6C3F6 /* AntDesign.ttf */,
+				7C0B3C802EDBBE0700A6C3F6 /* Entypo.ttf */,
+				7C0B3C812EDBBE0700A6C3F6 /* EvilIcons.ttf */,
+				7C0B3C822EDBBE0700A6C3F6 /* Feather.ttf */,
+				7C0B3C832EDBBE0700A6C3F6 /* FontAwesome.ttf */,
+				7C0B3C842EDBBE0700A6C3F6 /* FontAwesome5_Brands.ttf */,
+				7C0B3C852EDBBE0700A6C3F6 /* FontAwesome5_Regular.ttf */,
+				7C0B3C862EDBBE0700A6C3F6 /* FontAwesome5_Solid.ttf */,
+				7C0B3C872EDBBE0700A6C3F6 /* FontAwesome6_Brands.ttf */,
+				7C0B3C882EDBBE0700A6C3F6 /* FontAwesome6_Regular.ttf */,
+				7C0B3C892EDBBE0700A6C3F6 /* FontAwesome6_Solid.ttf */,
+				7C0B3C8A2EDBBE0700A6C3F6 /* Fontisto.ttf */,
+				7C0B3C8B2EDBBE0700A6C3F6 /* Foundation.ttf */,
+				7C0B3C8C2EDBBE0700A6C3F6 /* Ionicons.ttf */,
+				7C0B3C8D2EDBBE0700A6C3F6 /* MaterialCommunityIcons.ttf */,
+				7C0B3C8E2EDBBE0700A6C3F6 /* MaterialIcons.ttf */,
+				7C0B3C8F2EDBBE0700A6C3F6 /* Octicons.ttf */,
+				7C0B3C902EDBBE0700A6C3F6 /* SimpleLineIcons.ttf */,
+				7C0B3C912EDBBE0700A6C3F6 /* Zocial.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +115,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7C0B3C922EDBBE0700A6C3F6 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* AWSSampleMobileApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,

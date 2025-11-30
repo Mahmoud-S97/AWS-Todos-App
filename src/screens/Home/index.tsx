@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { generateClient } from '@aws-amplify/api';
 import { signOut } from 'aws-amplify/auth';
 import { AuthContext } from '../../context/Auth';
+import MainHeader from '../../components/Global/MainHeader';
+import AppIcon from '../../components/Global/AppIcon';
 
 export const client = generateClient();
 
@@ -26,10 +28,21 @@ const HomeScreen = (props: any): JSX.Element => {
 
     return (
         <View style={styles.screen}>
-            <Text>Welcome back <Text>{user?.signInDetails.loginId}</Text></Text>
-            <TouchableOpacity style={styles.signOutBtn} onPress={logoutHandler}>
-                <Text style={styles.signOutText}>Sign Out</Text>
+            <MainHeader className='bg-orange-400'>
+            <TouchableOpacity>
+                <AppIcon name='chevron-left' size={30} className='text-gray-700' />
             </TouchableOpacity>
+            <Text className='font-bold text-2xl ms-[6%]'>Latest Todos</Text>
+            <View className='flex-row items-center justify-center'>
+              <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-400 rounded-full me-[10]'>
+                <AppIcon fontFamily='MaterialIcons' name='light-mode' className='text-gray-700' />
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-400 rounded-full' onPress={logoutHandler}>
+                <AppIcon name='power-off' className='text-gray-700' />
+              </TouchableOpacity>
+            </View>
+          </MainHeader>
+            <Text>Welcome back <Text>{user?.signInDetails.loginId}</Text></Text>
             <View style={styles.container}>
                 <Text style={styles.mainText}>Home Screen</Text>
             </View>

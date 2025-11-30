@@ -1,19 +1,21 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {JSX, ReactNode} from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import AppIcon from '../AppIcon';
 
+interface MainHeaderTypes {
+    children: ReactNode,
+    className?: string
+}
 
-const MainHeader = () => {
+const MainHeader = ({children, className}: MainHeaderTypes): JSX.Element => {
+
+    const combinedClasses = `w-full h=[70] flex-row items-center justify-between p-5 ${className ?? ''}`;
+
     return (
-        <View style={styles}>
-            <TouchableOpacity>
-                <Text>{'<'}</Text>
-            </TouchableOpacity>
+        <View className={combinedClasses}>
+            {children}
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    
-})
 
 export default MainHeader;
