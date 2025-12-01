@@ -30,9 +30,9 @@ const HomeScreen = (props: any): JSX.Element => {
         <View style={styles.screen}>
             <MainHeader className='bg-orange-400'>
             <TouchableOpacity>
-                <AppIcon name='chevron-left' size={30} className='text-gray-700' />
+                <AppIcon name='chevron-left' size={30} className='text-white' />
             </TouchableOpacity>
-            <Text className='font-bold text-2xl ms-[6%]'>Latest Todos</Text>
+            <Text className='font-[600] text-2xl text-white ms-[6%]'>Latest Todos</Text>
             <View className='flex-row items-center justify-center'>
               <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-400 rounded-full me-[10]'>
                 <AppIcon fontFamily='MaterialIcons' name='light-mode' className='text-gray-700' />
