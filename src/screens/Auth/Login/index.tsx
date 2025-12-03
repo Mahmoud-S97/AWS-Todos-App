@@ -1,6 +1,6 @@
 import React, { useState, JSX, useContext } from 'react';
 import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
-import { signIn, fetchAuthSession } from 'aws-amplify/auth';
+import { signIn, fetchAuthSession, signInWithRedirect } from 'aws-amplify/auth';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
@@ -31,8 +31,8 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
             text: 'Ok, thanks'
           }
         ]);
-        const userSession = await fetchAuthSession();
-        await login(userSession.credentials?.sessionToken, results.isSignedIn);
+        const { credentials } = await fetchAuthSession();
+        await login(credentials?.sessionToken, results.isSignedIn);
       }
     } catch (error: any) {
       getErrorMessage(error);
@@ -48,7 +48,25 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
   }
 
   const loginWithGoogle = async () => {
-    console.log('Login with Google Auth');
+    try {
+      await signInWithRedirect({
+        provider: 'Google',
+        options: {
+          preferPrivateSession: true
+        }
+      });
+      const { credentials } = await fetchAuthSession();
+      if (credentials?.sessionToken) {
+        await login(credentials?.sessionToken, !!credentials?.sessionToken);
+        Alert.alert('', 'Logged in successfully', [
+          {
+            text: 'Ok, thanks'
+          }
+        ]);
+      }
+    } catch (error) {
+      console.log('Error while signing with Google: ', error);
+    }
   }
 
   if (loading) return <Spinner />

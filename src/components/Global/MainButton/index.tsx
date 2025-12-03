@@ -1,4 +1,4 @@
-import React, { JSX, ReactNode } from 'react';
+import React, { JSX, memo, ReactNode } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { cssInterop } from 'nativewind';
 import AppIcon from '../AppIcon';
@@ -23,11 +23,9 @@ type MainButtonTypes = {
 }
 
 const MainButton = ({ children, style, className, icon, textClassName, onPress }: MainButtonTypes): JSX.Element => {
-    console.log('className: ', className);
 
     const combinedClasses = `h-[50] flex-row items-center justify-center ${className ?? ''}`;
     const combinedTextClasses = `font-[500] text-gray-700 ${textClassName ?? ''}`;
-
 
     return (
         <TouchableOpacity activeOpacity={0.6} className={combinedClasses} style={style} onPress={onPress}>
@@ -39,4 +37,4 @@ const MainButton = ({ children, style, className, icon, textClassName, onPress }
     )
 }
 
-export default MainButton;
+export default memo(MainButton);

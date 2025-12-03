@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {memo, Suspense} from 'react';
 import { View } from 'react-native';
 import { cssInterop } from 'nativewind';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -45,4 +45,4 @@ const AppIcon = ({fontFamily = 'FontAwesome', name, size=24, color, className}: 
     )
 }
 
-export default AppIcon;
+export default memo(AppIcon);

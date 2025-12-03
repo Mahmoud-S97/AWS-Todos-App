@@ -8,6 +8,7 @@ import AppIcon from '../../components/Global/AppIcon';
 
 export const client = generateClient();
 
+
 const HomeScreen = (props: any): JSX.Element => {
 
     const {logout, user} = useContext(AuthContext);
@@ -32,7 +33,7 @@ const HomeScreen = (props: any): JSX.Element => {
             <TouchableOpacity>
                 <AppIcon name='chevron-left' size={30} className='text-white' />
             </TouchableOpacity>
-            <Text className='font-[600] text-2xl text-white ms-[6%]'>Latest Todos</Text>
+            <Text className='font-[600] text-2xl text-white ms-[6%]'>My Todos</Text>
             <View className='flex-row items-center justify-center'>
               <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-400 rounded-full me-[10]'>
                 <AppIcon fontFamily='MaterialIcons' name='light-mode' className='text-gray-700' />
@@ -42,7 +43,7 @@ const HomeScreen = (props: any): JSX.Element => {
               </TouchableOpacity>
             </View>
           </MainHeader>
-            <Text>Welcome back <Text>{user?.signInDetails.loginId}</Text></Text>
+            <Text>Welcome back <Text>{user?.signInDetails?.loginId || user?.username}</Text></Text>
             <View style={styles.container}>
                 <Text style={styles.mainText}>Home Screen</Text>
             </View>

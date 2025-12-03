@@ -1,4 +1,4 @@
-import React, {JSX, ReactNode} from 'react';
+import React, {JSX, memo, ReactNode} from 'react';
 import { View } from 'react-native';
 
 interface MainHeaderTypes {
@@ -17,4 +17,4 @@ const MainHeader = ({children, className}: MainHeaderTypes): JSX.Element => {
     )
 }
 
-export default MainHeader;
+export default memo(MainHeader);
