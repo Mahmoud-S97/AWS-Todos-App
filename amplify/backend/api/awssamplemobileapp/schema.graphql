@@ -8,3 +8,12 @@ type Todo @model {
   description: String
   completed: Boolean! @default(value: "false")
 }
+
+type User @model {
+  id: ID!
+  sub: String!
+  username: String!
+  email: String!
+  avatar: String
+  createdAt: AWSDateTime
+}

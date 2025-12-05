@@ -1,6 +1,6 @@
 import React, { useState, JSX, useContext } from 'react';
 import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
-import { signIn, fetchAuthSession, signInWithRedirect } from 'aws-amplify/auth';
+import { signIn, fetchAuthSession, signInWithRedirect, fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
@@ -26,13 +26,23 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
         password
       });
       if (results.isSignedIn) {
+
+        const userSession = await fetchAuthSession();
+        const currentUser = await getCurrentUser();
+        const userProfile = {
+          id: currentUser.userId,
+          sub: currentUser.userId,
+          username: currentUser.signInDetails?.loginId?.split('@')[0],
+          email: currentUser.signInDetails?.loginId,
+          picture: `https://api.dicebear.com/7.x/thumbs/svg?seed=${currentUser.signInDetails?.loginId}`
+        }
+        await login(userSession.credentials?.sessionToken, results.isSignedIn, userProfile);
+
         Alert.alert('', 'Logged in successfully', [
           {
             text: 'Ok, thanks'
           }
         ]);
-        const { credentials } = await fetchAuthSession();
-        await login(credentials?.sessionToken, results.isSignedIn);
       }
     } catch (error: any) {
       getErrorMessage(error);
@@ -49,6 +59,7 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
 
   const loginWithGoogle = async () => {
     try {
+      setLoading(true);
       await signInWithRedirect({
         provider: 'Google',
         options: {
@@ -57,7 +68,20 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
       });
       const { credentials } = await fetchAuthSession();
       if (credentials?.sessionToken) {
-        await login(credentials?.sessionToken, !!credentials?.sessionToken);
+
+        const userAttributes = await fetchUserAttributes();
+        const currentUser = await getCurrentUser();
+        const { email, name: username, picture, sub } = userAttributes;
+
+        const userProfile = {
+          id: currentUser.userId,
+          sub,
+          username,
+          email,
+          picture
+        }
+        await login(credentials?.sessionToken, !!credentials?.sessionToken, userProfile);
+
         Alert.alert('', 'Logged in successfully', [
           {
             text: 'Ok, thanks'
@@ -66,6 +90,8 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
       }
     } catch (error) {
       console.log('Error while signing with Google: ', error);
+    } finally {
+      setLoading(false);
     }
   }
 

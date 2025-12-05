@@ -1,6 +1,6 @@
 import React, { useState, JSX, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import { fetchAuthSession, signInWithRedirect, signUp } from 'aws-amplify/auth';
+import { fetchAuthSession, fetchUserAttributes, getCurrentUser, signInWithRedirect, signUp } from 'aws-amplify/auth';
 import { getErrorMessage } from '../../../utils';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { APP_THEME } from '../../../theme/styles';
@@ -53,6 +53,7 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
 
   const SignUpWithGoogle = async () => {
     try {
+      setLoading(true);
       await signInWithRedirect({
         provider: 'Google',
         options: {
@@ -61,7 +62,20 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
       });
       const { credentials } = await fetchAuthSession();
       if (credentials?.sessionToken) {
-        await login(credentials?.sessionToken, !!credentials?.sessionToken);
+
+        const userAttributes = await fetchUserAttributes();
+        const currentUser = await getCurrentUser();
+        const { email, name: username, picture, sub } = userAttributes;
+
+        const userProfile = {
+          id: currentUser.userId,
+          sub,
+          username,
+          email,
+          picture
+        }
+        await login(credentials?.sessionToken, !!credentials?.sessionToken, userProfile);
+
         Alert.alert('', 'Logged in successfully', [
           {
             text: 'Ok, thanks'
@@ -70,6 +84,8 @@ const SignUpScreen = ({ navigation }: any): JSX.Element => {
       }
     } catch (error) {
       console.log('Error while signing with Google: ', error);
+    } finally {
+      setLoading(false);
     }
   }
 

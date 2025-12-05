@@ -7,6 +7,7 @@ export const onCreateTodo = /* GraphQL */ `
       id
       name
       description
+      completed
       createdAt
       updatedAt
       __typename
@@ -19,6 +20,7 @@ export const onUpdateTodo = /* GraphQL */ `
       id
       name
       description
+      completed
       createdAt
       updatedAt
       __typename
@@ -31,6 +33,49 @@ export const onDeleteTodo = /* GraphQL */ `
       id
       name
       description
+      completed
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+    onCreateUser(filter: $filter) {
+      id
+      sub
+      username
+      email
+      avatar
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+    onUpdateUser(filter: $filter) {
+      id
+      sub
+      username
+      email
+      avatar
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+    onDeleteUser(filter: $filter) {
+      id
+      sub
+      username
+      email
+      avatar
       createdAt
       updatedAt
       __typename
