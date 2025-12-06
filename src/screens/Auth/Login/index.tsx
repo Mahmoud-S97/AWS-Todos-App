@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }: any): JSX.Element => {
           sub: currentUser.userId,
           username: currentUser.signInDetails?.loginId?.split('@')[0],
           email: currentUser.signInDetails?.loginId,
-          picture: `https://api.dicebear.com/7.x/thumbs/svg?seed=${currentUser.signInDetails?.loginId}`
+          picture: `https://api.dicebear.com/7.x/thumbs/png?seed=${currentUser.signInDetails?.loginId}`
         }
         await login(userSession.credentials?.sessionToken, results.isSignedIn, userProfile);
 

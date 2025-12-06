@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, JSX } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -8,9 +8,9 @@ import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/Auth";
 
 
-const RootNavigator = () => {
+const RootNavigator = (): JSX.Element => {
 
-    const {isLoggedIn, loading} = useContext(AuthContext);
+    const { isLoggedIn, loading } = useContext(AuthContext);
 
     if (loading) return <Spinner />
 

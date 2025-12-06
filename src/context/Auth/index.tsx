@@ -23,26 +23,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const initAuth = async () => {
-            try {
-                const accessToken = await getAccessToken();
-                const currentUser = await getCurrentUser();
-                await getUserProfile(currentUser.userId);
-                setIsLoggedIn(!!accessToken);
-            } catch (error) {
-                setUser(null);
-                setIsLoggedIn(false);
-                console.log('Error while authenticating: ', error);
-            } finally {
-                setLoading(false);
-            }
-        }
         initAuth();
     }, []);
+
+    const initAuth = async () => {
+        try {
+            const accessToken = await getAccessToken();
+            const currentUser = await getCurrentUser();
+            if (currentUser?.userId) {
+                await getUserProfile(currentUser.userId);
+            }
+            setIsLoggedIn(!!accessToken);
+        } catch (error) {
+            setUser(null);
+            setIsLoggedIn(false);
+            console.log('Error while authenticating: ', error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     const login = async (token: string | undefined, isSignedIn: boolean, userProfile: UserTypes) => {
         await saveDataToAsyncStorage(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, token);
         await saveDataToAsyncStorage(LOCAL_STORAGE_KEYS.IS_LOGGED_IN, isSignedIn.toString());
+
         await createUserProfile(userProfile);
         setIsLoggedIn(isSignedIn);
     }
@@ -50,16 +54,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const logout = async () => {
         await signOutAndRemoveAcessToken();
         setIsLoggedIn(false);
+        setUser(null);
     }
 
     const createUserProfile = async (userInput: UserTypes): Promise<void> => {
         try {
             const { id, sub, email, username, picture: avatar } = userInput;
 
-            const ifUserAlreadyExists = await getUserProfile(id);
-            if (ifUserAlreadyExists) return;
+            const exists = await getUserProfile(id);
+            if (exists) return;
 
-            const {data} = await client.graphql({
+            const { data } = await client.graphql({
                 query: createUser,
                 variables: {
                     input: {
@@ -71,6 +76,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     }
                 }
             }) as GraphQLResult<any>;
+
             setUser(data?.createUser);
         } catch (error) {
             console.log('Error while creating user Profile: ', error);
@@ -79,14 +85,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const getUserProfile = async (id: string) => {
         try {
-            const {data} = await client.graphql({
+            const { data } = await client.graphql({
                 query: getUser,
                 variables: { id }
             }) as GraphQLResult<any>;
-            setUser(data?.getUser);
-            return data?.getUser;
+
+            if (data?.getUser) {
+                setUser(data.getUser);
+                return data.getUser;
+            }
+            return null;
         } catch (error) {
             console.log('Error while fetching user from GraphQL: ', error);
+            return null;
         }
     }
 
