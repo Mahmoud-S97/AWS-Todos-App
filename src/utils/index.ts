@@ -70,3 +70,16 @@ export const signOutAndRemoveAcessToken = async () => {
 export const getScreenHeight = () => Dimensions.get('screen').height;
 
 export const getScreenWidth = () => Dimensions.get('screen').width;
+
+export const formatDate = (date: string | Date) => {
+
+    const checkedDate = date instanceof Date ? date : new Date(date);
+
+    return checkedDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+    });
+}

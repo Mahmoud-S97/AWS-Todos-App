@@ -1,4 +1,4 @@
-import React, {memo, Suspense} from 'react';
+import React, { memo, Suspense } from 'react';
 import { View } from 'react-native';
 import { cssInterop } from 'nativewind';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -6,13 +6,13 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 cssInterop(FontAwesome, { className: 'style' });
-cssInterop(MaterialIcons, {className: 'style'});
+cssInterop(MaterialIcons, { className: 'style' });
 cssInterop(Ionicons, { className: 'style' });
 
 type FontFamily =
-| 'Ionicons'
-| 'FontAwesome'
-| 'MaterialIcons';
+    | 'Ionicons'
+    | 'FontAwesome'
+    | 'MaterialIcons';
 
 interface AppIconProps {
     fontFamily?: FontFamily;
@@ -23,7 +23,7 @@ interface AppIconProps {
 }
 
 const loadFont = (fontLibrary: FontFamily) => {
-    switch(fontLibrary) {
+    switch (fontLibrary) {
         case 'FontAwesome':
             return require('react-native-vector-icons/FontAwesome').default
         case 'Ionicons':
@@ -35,12 +35,12 @@ const loadFont = (fontLibrary: FontFamily) => {
     }
 }
 
-const AppIcon = ({fontFamily = 'FontAwesome', name, size=24, color, className}: AppIconProps) => {
+const AppIcon = ({ fontFamily = 'FontAwesome', name, size = 24, color, className }: AppIconProps) => {
 
     const Icon = loadFont(fontFamily);
     return (
         <Suspense fallback={<View />}>
-            <Icon font name={name} size={size} color={color} className={className} />
+            <Icon name={name} size={size} color={color} className={className} />
         </Suspense>
     )
 }
