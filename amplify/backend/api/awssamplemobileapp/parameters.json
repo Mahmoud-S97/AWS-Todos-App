@@ -1,5 +1,11 @@
 {
   "AppSyncApiName": "awssamplemobileapp",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authawssamplemobileapp89cf75e4",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

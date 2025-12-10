@@ -5,6 +5,7 @@ export const onCreateTodo = /* GraphQL */ `
   subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
     onCreateTodo(filter: $filter) {
       id
+      userId
       name
       description
       completed
@@ -18,6 +19,7 @@ export const onUpdateTodo = /* GraphQL */ `
   subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
     onUpdateTodo(filter: $filter) {
       id
+      userId
       name
       description
       completed
@@ -31,6 +33,7 @@ export const onDeleteTodo = /* GraphQL */ `
   subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
     onDeleteTodo(filter: $filter) {
       id
+      userId
       name
       description
       completed

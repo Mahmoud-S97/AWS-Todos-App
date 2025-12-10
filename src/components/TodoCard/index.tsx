@@ -28,7 +28,7 @@ const TodoCard = ({ name, description, completed, createdAt, className, onComple
             <View className='w-[25%] flex-col justify-center items-end'>
                 <Text className='w-full text-sm font-[500] text-right text-gray-800 mb-[8]'>{formattedDate}</Text>
                 <View className='w-full flex-row justify-end items-center'>
-                    <TouchableOpacity activeOpacity={0.7} className='w-[30] h-[30] flex-row justify-center items-center me-[8]' onPress={onComplete}>
+                    <TouchableOpacity activeOpacity={0.7} disabled={completed} className='w-[30] h-[30] flex-row justify-center items-center me-[8]' onPress={onComplete}>
                         <AppIcon name={completed ? 'check-circle-o' : 'circle-thin'} size={30} className={`${completed ? 'text-gray-100' : 'text-gray-200'}`} />
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.7} className='w-[30] h-[30] flex-row justify-center items-center' onPress={onDelete}>

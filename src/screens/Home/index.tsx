@@ -1,5 +1,5 @@
 import React, { useEffect, JSX, useContext, useState, useCallback } from 'react';
-import { View, Text, TouchableOpacity, Alert, Image, ScrollView, TextInput, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Image, ScrollView, TextInput, ImageBackground, FlatList } from 'react-native';
 import { signOut } from 'aws-amplify/auth';
 import { AuthContext } from '../../context/Auth';
 import MainHeader from '../../components/Global/MainHeader';
@@ -20,6 +20,7 @@ const client = generateClient();
 type TodoList = {
     id: string,
     name: string,
+    userId: string,
     description?: string,
     completed: boolean,
     createdAt: string | Date
@@ -38,7 +39,8 @@ const HomeScreen = (props: any): JSX.Element => {
             try {
                 setLoading(true);
                 const results = await client.graphql({
-                    query: listTodos
+                    query: listTodos,
+                    variables: { filter: { userId: { eq: user.sub } } }
                 }) as GraphQLResult<any>;
                 const { data } = results;
                 if (data?.listTodos?.items?.length) {
@@ -66,6 +68,7 @@ const HomeScreen = (props: any): JSX.Element => {
         const addedTodo = {
             id: newTodoId,
             name: todo.name,
+            userId: user.sub,
             description: todo?.description || '',
             completed: false
         }
@@ -101,6 +104,7 @@ const HomeScreen = (props: any): JSX.Element => {
                     variables: {
                         input: {
                             id: todoId,
+                            userId: user.sub,
                             completed: true
                         }
                     }
@@ -115,6 +119,10 @@ const HomeScreen = (props: any): JSX.Element => {
     const deleteTodoHandler = useCallback(
         async (todoId: string): Promise<void> => {
 
+            const deletedTodo: any = {
+                ...todoList?.find(todo => todo.id === todoId)
+            }
+
             setTodoList(prevTodos => prevTodos.filter(todo => todo.id !== todoId));
 
             try {
@@ -123,25 +131,28 @@ const HomeScreen = (props: any): JSX.Element => {
                     variables: { input: { id: todoId } }
                 });
             } catch (error) {
-                setTodoList(prevTodos => prevTodos.map(todo => todo.id === todoId ? { ...todo, completed: false } : todo));
+                setTodoList(prevTodos => [...prevTodos, deletedTodo]);
                 console.log(`Error while deleting todo ID: ${todoId} : `, error);
             }
         }, [todoList]);
 
     const logoutHandler = async () => {
         try {
+            setLoading(true);
             await signOut();
             await logout();
         } catch (error: any) {
             console.log('Error while logging out: ', error);
             Alert.alert('', error.message);
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
         <View className='flex-1'>
             <ImageBackground className='flex-1' source={LOCAL_IMAGES.HOME_BACKGROUND_IMG} resizeMode='cover'>
-                <MainHeader className='bg-orange-400'>
+                <MainHeader className='bg-transparent'>
                     <View className='w-[50] h-[50] justify-center items-center'>
                         <Image style={[APP_THEME.mainShadow, { borderWidth: 2 }]} source={{ uri: user.avatar }} className='w-full h-full bg-gray-400 rounded-full border-gray-400' />
                     </View>
@@ -185,7 +196,13 @@ const HomeScreen = (props: any): JSX.Element => {
                         <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-f bg-orange-400 rounded-2xl border-gray-400 mb-[20]' textClassName='font-bold text-xl text-white' icon={{ name: 'plus', size: 20, className: 'text-white me-3' }} onPress={addTodoHandler}>
                             Add Todo
                         </MainButton>
-                        {todoList.map((todo, index) => <TodoCard key={index} {...todo} onComplete={() => completeTodoHandler(todo.id)} onDelete={() => deleteTodoHandler(todo.id)} />)}
+                        <FlatList
+                            data={todoList}
+                            keyExtractor={(todo, index) => todo.id || index.toString()}
+                            contentContainerClassName='w-full'
+                            scrollEnabled={false}
+                            renderItem={({ item: todo }) => <TodoCard {...todo} onComplete={() => completeTodoHandler(todo.id)} onDelete={() => deleteTodoHandler(todo.id)} />}
+                        />
                     </View>
                 </ScrollView>
                 {loading && <Spinner />}
