@@ -1,14 +1,18 @@
 import React, { useState, JSX } from 'react';
 import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { confirmSignUp } from 'aws-amplify/auth';
 import { getErrorMessage } from '../../../utils';
 import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
 import MainButton from '../../../components/Global/MainButton';
+import { RootStackParamList } from '../../../navigation/types';
 
-const SignUpVerification = (props: any): JSX.Element => {
+type Props = NativeStackScreenProps<RootStackParamList, 'SignUpVerification'>
 
-  const username = props.route.params.userName;
+const SignUpVerification = (props: Props): JSX.Element => {
+
+  const username = props.route.params?.userName;
   const [verificationCode, setVerificationCode] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 

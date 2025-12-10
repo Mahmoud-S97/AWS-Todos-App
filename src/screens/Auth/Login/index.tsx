@@ -1,5 +1,6 @@
 import React, { useState, JSX, useContext } from 'react';
 import { View, Text, TextInput, ScrollView, Alert } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { signIn, fetchAuthSession, signInWithRedirect, fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { ERROR_CODES } from '../../../constants/AWS/auth/ErrorCodes';
 import { getErrorMessage } from '../../../utils';
@@ -7,9 +8,12 @@ import { APP_THEME } from '../../../theme/styles';
 import Spinner from '../../../components/Spinner';
 import { AuthContext } from '../../../context/Auth';
 import MainButton from '../../../components/Global/MainButton';
+import { RootStackParamList } from '../../../navigation/types';
 
 
-const LoginScreen = ({ navigation }: any): JSX.Element => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>
+
+const LoginScreen = ({ navigation }: Props): JSX.Element => {
 
   const { login } = useContext(AuthContext);
 

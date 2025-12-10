@@ -1,9 +1,6 @@
-export type AuthStackParamList = {
+export type RootStackParamList = {
     Login: undefined,
     SignUp: undefined,
-    SignUpVerification: undefined
-}
-
-export type AppStackParamList = {
+    SignUpVerification: { userName: string }
     Home: undefined
 }

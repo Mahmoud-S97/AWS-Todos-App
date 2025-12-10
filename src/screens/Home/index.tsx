@@ -1,5 +1,6 @@
 import React, { useEffect, JSX, useContext, useState, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Alert, Image, ScrollView, TextInput, ImageBackground, FlatList } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { signOut } from 'aws-amplify/auth';
 import { AuthContext } from '../../context/Auth';
 import MainHeader from '../../components/Global/MainHeader';
@@ -13,6 +14,7 @@ import Spinner from '../../components/Spinner';
 import { listTodos } from '../../graphql/queries';
 import TodoCard from '../../components/TodoCard';
 import { LOCAL_IMAGES } from '../../constants';
+import { RootStackParamList } from '../../navigation/types';
 
 
 const client = generateClient();
@@ -26,7 +28,9 @@ type TodoList = {
     createdAt: string | Date
 }
 
-const HomeScreen = (props: any): JSX.Element => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
+
+const HomeScreen = (props: Props): JSX.Element => {
 
     const { logout, user } = useContext(AuthContext);
 

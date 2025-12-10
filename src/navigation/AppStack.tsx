@@ -1,8 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppStackParamList } from "./types";
+import { RootStackParamList } from "./types";
 
 import HomeScreen from "../screens/Home";
+
+type AppStackParamList = Pick<RootStackParamList, 'Home'>
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
