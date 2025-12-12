@@ -1,5 +1,5 @@
 import React, { useEffect, JSX, useContext, useState, useCallback } from 'react';
-import { View, Text, TouchableOpacity, Alert, Image, ScrollView, TextInput, ImageBackground, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Image, ScrollView, TextInput, FlatList } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { signOut } from 'aws-amplify/auth';
 import { AuthContext } from '../../context/Auth';
@@ -13,8 +13,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../../components/Spinner';
 import { listTodos } from '../../graphql/queries';
 import TodoCard from '../../components/TodoCard';
-import { LOCAL_IMAGES } from '../../constants';
 import { RootStackParamList } from '../../navigation/types';
+import { useAppTheme } from '../../context/AppTheme';
 
 
 const client = generateClient();
@@ -31,6 +31,8 @@ type TodoList = {
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
 
 const HomeScreen = (props: Props): JSX.Element => {
+
+    const { appTheme, toggleAppTheme } = useAppTheme();
 
     const { logout, user } = useContext(AuthContext);
 
@@ -154,16 +156,16 @@ const HomeScreen = (props: Props): JSX.Element => {
     }
 
     return (
-        <View className='flex-1'>
-            <ImageBackground className='flex-1' source={LOCAL_IMAGES.HOME_BACKGROUND_IMG} resizeMode='cover'>
+        <View className='flex-1 bg-primary-light dark:bg-primary-dark'>
+            <View className='flex-1'>
                 <MainHeader className='bg-transparent'>
                     <View className='w-[50] h-[50] justify-center items-center'>
-                        <Image style={[APP_THEME.mainShadow, { borderWidth: 2 }]} source={{ uri: user.avatar }} className='w-full h-full bg-gray-400 rounded-full border-gray-400' />
+                        <Image style={[APP_THEME.mainShadow, { borderWidth: 2 }]} source={{ uri: user.avatar }} className='w-full h-full bg-gray-400 rounded-full border-gray-400 dark:border-gray-700' />
                     </View>
-                    <Text className='font-[600] text-2xl text-white ms-[6%]'>My Tasks</Text>
+                    <Text className='font-[600] text-2xl text-text-dark dark:text-text-light ms-[6%]'>My Tasks</Text>
                     <View className='flex-row items-center justify-center'>
-                        <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-200 rounded-full me-[10]'>
-                            <AppIcon fontFamily='MaterialIcons' name='light-mode' className='text-gray-700' />
+                        <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-200 rounded-full me-[10]' onPress={toggleAppTheme}>
+                            <AppIcon fontFamily='MaterialIcons' name={appTheme === 'dark' ? 'light-mode' : 'dark-mode'} className='text-text-dark dark:text-primary-default' />
                         </TouchableOpacity>
                         <TouchableOpacity activeOpacity={0.6} className='w-[40] h-[40] flex-row justify-center items-center bg-gray-200 rounded-full' onPress={logoutHandler}>
                             <AppIcon name='power-off' className='text-gray-700' />
@@ -172,32 +174,30 @@ const HomeScreen = (props: Props): JSX.Element => {
                 </MainHeader>
                 <ScrollView className='flex-1' showsVerticalScrollIndicator={false}>
                     <View className='w-[95%] h-[100%] self-center'>
-                        <View style={[APP_THEME.mainShadow, { borderWidth: 2 }]} className='w-f h-[130] my-[20] p-5 flex-col justify-center items-center border-gray-400 rounded-2xl bg-white'>
-                            <Text className='text-gray-800 text-2xl font-[600]'>Welcome back</Text>
-                            <Text numberOfLines={2} className='text-orange-400 text-2xl capitalize font-bold my-[5] text-center'>{user?.username}</Text>
-                            <Text className='text-lg color-gray-900 font-[500]'>You have <Text className='font-bold text-orange-600'>{todoList.length}</Text> tasks today</Text>
+                        <View style={[APP_THEME.mainShadow, { borderWidth: 2 }]} className='w-f h-[130] my-[20] p-5 flex-col justify-center items-center border-gray-400 dark:border-gray-700 rounded-2xl bg-background-light dark:bg-background-dark'>
+                            <Text className='text-text-dark dark:text-text-light text-2xl font-[600]'>Welcome back</Text>
+                            <Text numberOfLines={2} className='text-primary-default text-2xl capitalize font-bold my-[5] text-center'>{user?.username}</Text>
+                            <Text className='text-lg text-text-dark dark:text-text-light font-[500]'>You have <Text className='font-bold text-orange-600'>{todoList.length}</Text> tasks today</Text>
                         </View>
-                        <Text className='text-xl text-black font-semibold mb-2 mt-1'>Add More Todos?</Text>
+                        <Text className='text-xl text-text-dark dark:text-text-light font-semibold mb-2 mt-1'>{`${todoList.length ? 'Add More Todos?' : 'Start your Todos:'}`}</Text>
                         <TextInput
                             style={[APP_THEME.mainShadow, { borderWidth: 2 }]}
-                            className='w-f h-[60] bg-white text-black text-lg border-gray-400 p-[10] rounded-2xl'
+                            className='w-f h-[60] bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light text-lg placeholder:text-text-dark placeholder:dark:text-text-light border-gray-400 dark:border-gray-700 p-[10] rounded-2xl'
                             placeholder='Todo Name...'
-                            placeholderTextColor={'#444444'}
                             onChangeText={(value) => setTodoHandler(value, 'name')}
                             value={todo.name}
                             maxLength={40}
                         />
                         <TextInput
                             style={[APP_THEME.mainShadow, { borderWidth: 2 }]}
-                            className='w-f h-[100] bg-white text-black text-lg border-gray-400 p-[10] rounded-2xl my-[20]'
+                            className='w-f h-[100] bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light text-lg placeholder:text-text-dark placeholder:dark:text-text-light border-gray-400 dark:border-gray-700 p-[10] rounded-2xl my-[20]'
                             placeholder='Todo Description...'
-                            placeholderTextColor={'#444444'}
                             onChangeText={(value) => setTodoHandler(value, 'description')}
                             value={todo.description}
                             multiline={true}
                             maxLength={100}
                         />
-                        <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-f bg-orange-400 rounded-2xl border-gray-400 mb-[20]' textClassName='font-bold text-xl text-white' icon={{ name: 'plus', size: 20, className: 'text-white me-3' }} onPress={addTodoHandler}>
+                        <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-f bg-primary-default rounded-2xl border-gray-400 dark:border-gray-700 mb-[20]' textClassName='font-bold text-xl text-white' icon={{ name: 'plus', size: 20, className: 'text-white me-3' }} onPress={addTodoHandler}>
                             Add Todo
                         </MainButton>
                         <FlatList
@@ -210,7 +210,7 @@ const HomeScreen = (props: Props): JSX.Element => {
                     </View>
                 </ScrollView>
                 {loading && <Spinner />}
-            </ImageBackground>
+            </View>
         </View>
     )
 }
