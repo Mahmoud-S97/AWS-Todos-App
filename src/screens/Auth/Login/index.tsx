@@ -102,39 +102,37 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
   if (loading) return <Spinner />
 
   return (
-    <ScrollView className="flex-1 bg-orange-100" showsVerticalScrollIndicator={false}>
+    <ScrollView className="flex-1 bg-primary-light dark:bg-primary-dark" showsVerticalScrollIndicator={false}>
       <View className='flex-1 items-center justify-center'>
         <View className='w-[95%] h-full pb-[40] self-center mt-[100] items-center justify-center'>
-          <Text className='text-3xl text-gray-800 font-bold mb-[40]'>Welcome Back!</Text>
+          <Text className='text-3xl text-text-dark dark:text-text-light font-bold mb-[40]'>Welcome Back!</Text>
           <TextInput
-            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 text-start'
-            placeholderTextColor={'#444444'}
+            className='h-[50] text-text-dark dark:text-text-light placeholder:text-text-dark placeholder:dark:text-text-light w-[95%] font-[500] border-b border-gray-500 dark:border-gray-700 p-2 text-start'
             placeholder='Email'
             autoCapitalize='none'
             value={email}
             onChangeText={setEmail}
           />
           <TextInput
-            className='h-[50] text-black-600 w-[95%] font-[500] border-b border-gray-500 p-2 mb-[30] text-start'
-            placeholderTextColor={'#444444'}
+            className='h-[50] text-text-dark dark:text-text-light placeholder:text-text-dark placeholder:dark:text-text-light w-[95%] font-[500] border-b border-gray-500 dark:border-gray-700 p-2 mb-[30] text-start'
             placeholder='Password'
             secureTextEntry
             autoCapitalize='none'
             value={password}
             onChangeText={setPassword}
           />
-          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-orange-400 border border-gray-400 rounded-lg' textClassName='text-xl text-gray-900' onPress={loginHandler}>
+          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-primary-default border border-gray-400 dark:border-gray-700 rounded-lg' textClassName='text-xl text-gray-900' onPress={loginHandler}>
             Login
           </MainButton>
           <View className='w-[95%] self-center items-center justify-between flex-row my-[10]'>
-            <View className='w-[45%] h-[1] bg-gray-400' />
-            <Text className='w-[10%] font-bold text-gray-700 text-center'>Or</Text>
-            <View className='w-[45%] h-[1] bg-gray-400' />
+            <View className='w-[45%] h-[1] bg-gray-400 dark:bg-gray-500' />
+            <Text className='w-[10%] font-bold text-text-dark dark:text-text-light text-center'>Or</Text>
+            <View className='w-[45%] h-[1] bg-gray-400 dark:bg-gray-500' />
           </View>
-          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-[#e55039] border border-gray-400 rounded-lg' textClassName='text-xl text-white' icon={{ name: 'google-plus', className: 'text-white me-3' }} onPress={loginWithGoogle}>
+          <MainButton style={[APP_THEME.mainShadow, { borderWidth: 1 }]} className='w-[96%] self-center my-[15] bg-background-googleButton border border-gray-400 dark:border-gray-700 rounded-lg' textClassName='text-xl text-white' icon={{ name: 'google-plus', className: 'text-white me-3' }} onPress={loginWithGoogle}>
             Continue with Google
           </MainButton>
-          <Text className='text-l text-orange-400 mt-[20]' onPress={() => navigation.navigate('SignUp')}>Don't have an account? <Text className='text-l text-gray-700 font-bold'>Sign Up</Text></Text>
+          <Text className='text-l text-text-dark dark:text-text-light mt-[20]' onPress={() => navigation.navigate('SignUp')}>Don't have an account? <Text className='text-l text-primary-default font-bold'>Sign Up</Text></Text>
         </View>
       </View>
     </ScrollView>

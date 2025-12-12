@@ -20,7 +20,8 @@ module.exports = {
         background: {
           light: '#f1f2f6',
           dark: '#333333',
-          glass: 'rgba(0,0,0,0.2)'
+          glass: 'rgba(0,0,0,0.2)',
+          googleButton: '#e55039'
         },
         text: {
           light: '#ced6e0',
