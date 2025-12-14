@@ -53,11 +53,11 @@ This project is designed to demonstrate:
 <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
   <div>
     <p>Normal Login</p>
-    <video src="./src/assets/demo/app-demo-NormalAuth.mp4" width="320" controls muted></video>
+    <img src="./src/assets/demo/app-demo-NormalAuth.gif" width="240px" />
   </div>
   <div>
     <p>Google OAuth (AWS-Amplify)</p>
-    <video src="./src/assets/demo/app-demo-GoogleAuth.mp4" width="320" controls muted></video>
+    <img src="./src/assets/demo/app-demo-GoogleAuth.gif" width="240px" />
   </div>
 </div>
 
