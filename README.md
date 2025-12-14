@@ -1,97 +1,197 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📝 Todo App — React Native + AWS Amplify
 
-# Getting Started
+A clean, modern **Todo application** built with **React Native CLI**, **NativeWind (Tailwind CSS)**, and **AWS Amplify**, showcasing production-ready theming, authentication, and cloud-backed data handling.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+This project is designed to demonstrate:
 
-## Step 1: Start Metro
+* Thoughtful **UI/UX** decisions
+* Proper **dark / light mode** implementation
+* Secure **OAuth authentication**
+* Cloud-native **GraphQL CRUD operations**
+* Clean **architecture & theming** patterns
+* Attention to **platform differences** (iOS vs Android)
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+---
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## ✨ Features
+
+* ✅ Create, update & delete todos (GraphQL)
+* 🔐 Authentication with **AWS Amplify Auth**
+
+  * Google OAuth
+  * Secure user sessions
+* 🌗 Light / Dark mode (system + manual toggle)
+* 🎨 Tailwind-aware custom color palette
+* 🧩 Global theme provider (single source of truth)
+* 🧊 Glass-style UI with platform-correct shadows
+* ☁️ Cloud-backed data persistence (AWS AppSync)
+* 📱 Optimized for both **Android** and **iOS**
+
+---
+
+## 📱 UI Preview
+
+> *Visual demos will be added here to showcase the UI, authentication flow, and interactions.*
+
+### 🌙 Dark Mode
+
+![Dark Mode Preview](./src/assets/demo/dark-mode.gif)
+
+### ☀️ Light Mode
+
+![Light Mode Preview](./src/assets/demo/light-mode.gif)
+
+---
+
+## 🎥 Full App Walkthrough
+
+| Normal Login | Google OAuth (AWS-Amplify) |
+|--------------|----------------------------|
+| <video src="./src/assets/demo/app-demo-NormalAuth.mp4" width="320" controls muted></video> | <video src="./src/assets/demo/app-demo-GoogleAuth.mp4" width="320" controls muted></video> |
+
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* **React Native CLI**
+* **TypeScript**
+* **NativeWind (Tailwind CSS)**
+* **Context API** (auth & theming)
+* **React Navigation**
+
+### Backend / Cloud
+
+* **AWS Amplify**
+* **Amazon Cognito** (Authentication)
+* **Google OAuth**
+* **AWS AppSync** (GraphQL API)
+* **DynamoDB** (data persistence)
+
+---
+
+## 🧠 Architecture Highlights
+
+* **AWS Amplify–driven authentication**
+
+  * OAuth sign-in with Google
+  * Secure token & session handling
+
+* **GraphQL-first data layer**
+
+  * Typed queries & mutations
+  * Real-time-ready schema design
+
+* **Global Theme Provider**
+
+  * Centralized theme state
+  * Syncs with NativeWind (`dark` class)
+
+* **Tailwind-aware Design Tokens**
+
+  * Custom color palette
+  * Consistent styling across components
+
+* **Platform-correct UI handling**
+
+  * Android elevation vs iOS shadows
+  * SafeArea-aware status bar styling
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Node.js (LTS)
+* React Native CLI environment
+* AWS Account (for Amplify backend)
+
+Make sure you have completed:
+👉 [https://reactnative.dev/docs/set-up-your-environment](https://reactnative.dev/docs/set-up-your-environment)
+
+---
+
+### 1️⃣ Install dependencies
 
 ```sh
-# Using npm
-npm start
+npm install
+# or
+yarn install
+```
 
-# OR using Yarn
+---
+
+### 2️⃣ Configure AWS Amplify
+
+```sh
+amplify pull
+```
+
+> This app uses an existing Amplify backend (Auth + GraphQL).
+
+---
+
+### 3️⃣ Start Metro
+
+```sh
+npm start
+# or
 yarn start
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### 4️⃣ Run the app
 
-### Android
+#### Android
 
 ```sh
-# Using npm
 npm run android
-
-# OR using Yarn
+# or
 yarn android
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+#### iOS
 
 ```sh
 bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
 bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
 npm run ios
-
-# OR using Yarn
+# or
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 📂 Project Focus
 
-## Step 3: Modify your app
+This repository is intentionally focused on:
 
-Now that you have successfully run the app, let's make changes!
+* End-to-end **mobile + cloud integration**
+* Secure authentication flows
+* Clean theming & UI polish
+* Scalable architecture patterns
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+It is meant as a **portfolio project** demonstrating real-world React Native and AWS Amplify usage.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+---
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## 📌 Notes for Reviewers
 
-## Congratulations! :tada:
+* Authentication handled via **AWS Cognito (Amplify Auth)**
+* GraphQL CRUD via **AWS AppSync**
+* Emulator recommended: **Pixel 2 / 3 — 4GB RAM, 32GB storage**
+* Android & iOS behaviors are handled intentionally
 
-You've successfully run and modified your React Native App. :partying_face:
+---
 
-### Now what?
+## 📄 License
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+This project is open-source and available for educational and demonstration purposes.
 
-# Troubleshooting
+---
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+> 💡 *Visual assets (`.gif` / `.mp4`) can be replaced with real recordings by updating the paths in the `/assets/demo` directory.*
