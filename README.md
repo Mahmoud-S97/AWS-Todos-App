@@ -31,23 +31,39 @@ This project is designed to demonstrate:
 
 ## 📱 UI Preview
 
-> *Visual demos will be added here to showcase the UI, authentication flow, and interactions.*
-
-### 🌙 Dark Mode
-
-![Dark Mode Preview](./src/assets/demo/dark-mode.gif)
-
-### ☀️ Light Mode
-
-![Light Mode Preview](./src/assets/demo/light-mode.gif)
+<table>
+  <tr>
+    <th>### 🌙 Dark Mode</th>
+    <th>### ☀️ Light Mode</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/assets/demo/dark-mode.gif" width="240px" />
+    </td>
+    <td>
+      <img src="./src/assets/demo/light-mode.gif" width="240px" />
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## 🎥 Full App Walkthrough
 
-| Normal Login | Google OAuth (AWS-Amplify) |
-|--------------|----------------------------|
-| <video src="./src/assets/demo/app-demo-NormalAuth.mp4" width="320" controls muted></video> | <video src="./src/assets/demo/app-demo-GoogleAuth.mp4" width="320" controls muted></video> |
+<table>
+  <tr>
+    <th>Normal Login</th>
+    <th>Google OAuth (AWS-Amplify)</th>
+  </tr>
+  <tr>
+    <td>
+      <video src="./src/assets/demo/app-demo-NormalAuth.mp4" width="320" controls muted></video>
+    </td>
+    <td>
+      <video src="./src/assets/demo/app-demo-GoogleAuth.mp4" width="320" controls muted></video>
+    </td>
+  </tr>
+</table>
 
 
 ---
@@ -193,5 +209,3 @@ It is meant as a **portfolio project** demonstrating real-world React Native and
 This project is open-source and available for educational and demonstration purposes.
 
 ---
-
-> 💡 *Visual assets (`.gif` / `.mp4`) can be replaced with real recordings by updating the paths in the `/assets/demo` directory.*
