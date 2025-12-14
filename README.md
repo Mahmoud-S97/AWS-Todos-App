@@ -50,16 +50,20 @@ This project is designed to demonstrate:
 
 ## 🎥 Full App Walkthrough
 
-<div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-  <div>
-    <p>Normal Login</p>
-    <img src="./src/assets/demo/app-demo-NormalAuth.gif" width="240px" />
-  </div>
-  <div>
-    <p>Google OAuth (AWS-Amplify)</p>
-    <img src="./src/assets/demo/app-demo-GoogleAuth.gif" width="240px" />
-  </div>
-</div>
+<table>
+  <tr>
+    <th>Normal Login</th>
+    <th>Google OAuth (AWS-Amplify)</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/assets/demo/app-demo-NormalAuth.gif" width="240px" />
+    </td>
+    <td>
+      <img src="./src/assets/demo/app-demo-GoogleAuth.gif" width="240px" />
+    </td>
+  </tr>
+</table>
 
 ---
 
