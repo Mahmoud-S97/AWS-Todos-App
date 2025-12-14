@@ -1,7 +1,7 @@
 import './src/global.css'
 import './src/awsConfig';
 import React, { JSX } from 'react';
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import RootNavigator from './src/navigation/RootNavigator';
 import { AppThemeProvider, useAppTheme } from './src/context/AppTheme';
 import { AuthProvider } from './src/context/Auth';
@@ -9,9 +9,14 @@ import { AuthProvider } from './src/context/Auth';
 const AppContent = (): JSX.Element => {
 
   const { appTheme } = useAppTheme();
+  const isDark = appTheme === 'dark';
 
   return (
-    <View className={appTheme === 'dark' ? 'dark flex-1' : 'flex-1'}>
+    <View className={isDark ? 'dark flex-1' : 'flex-1'}>
+      <StatusBar
+        barStyle={isDark ? 'light-content' : 'dark-content'}
+        translucent={false}
+      />
       <AuthProvider>
         <RootNavigator />
       </AuthProvider>

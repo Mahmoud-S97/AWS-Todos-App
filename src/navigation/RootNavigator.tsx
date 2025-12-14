@@ -6,17 +6,20 @@ import AuthStack from "./AuthStack";
 import AppStack from "./AppStack";
 import Spinner from "../components/Spinner";
 import { AuthContext } from "../context/Auth";
+import { useAppTheme } from "../context/AppTheme";
 
 
 const RootNavigator = (): JSX.Element => {
 
     const { isLoggedIn, loading } = useContext(AuthContext);
+    const { appTheme } = useAppTheme();
+    const isDark = appTheme === 'dark';
 
     if (loading) return <Spinner />
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView edges={['top', 'bottom']} className={isDark ? 'dark:bg-primary-dark flex-1' : 'bg-primary-light flex-1'}>
                 <NavigationContainer>
                     {isLoggedIn ? <AppStack /> : <AuthStack />}
                 </NavigationContainer>

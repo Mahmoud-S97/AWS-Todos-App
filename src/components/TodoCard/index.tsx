@@ -16,7 +16,7 @@ type TodoProps = {
 
 const TodoCard = ({ name, description, completed, createdAt, className, onComplete, onDelete }: TodoProps): JSX.Element => {
 
-    const combinedClasses = `flex-row w-full h-[120] p-4 bg-background-glass dark:bg-background-dark border-gray-400 dark:border-gray-700 justify-between items-center rounded-lg mb-[15] ${className ?? ''}`;
+    const combinedClasses = `flex-row w-[98%] self-center h-[120] p-4 bg-background-light dark:bg-background-dark border-gray-400 dark:border-gray-700 justify-between items-center rounded-xl mb-[20] ${className ?? ''}`;
 
     const formattedDate = formatDate(createdAt);
 
@@ -30,7 +30,7 @@ const TodoCard = ({ name, description, completed, createdAt, className, onComple
                 <Text className='w-full text-sm font-[500] text-right text-text-dark dark:text-text-light mb-[8]'>{formattedDate}</Text>
                 <View className='w-full flex-row justify-end items-center'>
                     <TouchableOpacity activeOpacity={0.7} disabled={completed} className='w-[30] h-[30] flex-row justify-center items-center me-[8]' onPress={onComplete}>
-                        <AppIcon name={completed ? 'check-circle-o' : 'circle-thin'} size={30} className={`${completed ? 'text-gray-100 dark:text-gray-200' : 'text-gray-200'}`} />
+                        <AppIcon name={completed ? 'check-circle-o' : 'circle-thin'} size={30} className={`${completed ? 'text-primary-default' : 'text-gray-500'}`} />
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.7} className='w-[30] h-[30] flex-row justify-center items-center' onPress={onDelete}>
                         <AppIcon name='trash-o' size={25} className='text-text-dark dark:text-text-light' />
