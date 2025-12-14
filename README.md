@@ -50,21 +50,16 @@ This project is designed to demonstrate:
 
 ## 🎥 Full App Walkthrough
 
-<table>
-  <tr>
-    <th>Normal Login</th>
-    <th>Google OAuth (AWS-Amplify)</th>
-  </tr>
-  <tr>
-    <td>
-      <video src="./src/assets/demo/app-demo-NormalAuth.mp4" width="320" controls muted></video>
-    </td>
-    <td>
-      <video src="./src/assets/demo/app-demo-GoogleAuth.mp4" width="320" controls muted></video>
-    </td>
-  </tr>
-</table>
-
+<div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+  <div>
+    <p>Normal Login</p>
+    <video src="./src/assets/demo/app-demo-NormalAuth.mp4" width="320" controls muted></video>
+  </div>
+  <div>
+    <p>Google OAuth (AWS-Amplify)</p>
+    <video src="./src/assets/demo/app-demo-GoogleAuth.mp4" width="320" controls muted></video>
+  </div>
+</div>
 
 ---
 
