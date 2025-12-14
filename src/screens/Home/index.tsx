@@ -50,7 +50,8 @@ const HomeScreen = (props: Props): JSX.Element => {
                 }) as GraphQLResult<any>;
                 const { data } = results;
                 if (data?.listTodos?.items?.length) {
-                    const sortedTodoList = data?.listTodos?.items.sort((a: TodoList, b: TodoList) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());                    setTodoList(sortedTodoList);
+                    const sortedTodoList = data?.listTodos?.items.sort((a: TodoList, b: TodoList) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+                    setTodoList(sortedTodoList);
                 }
             } catch (error) {
                 console.log('Error while getting Todos: ', error);
