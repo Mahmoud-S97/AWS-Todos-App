@@ -83,3 +83,14 @@ export const formatDate = (date: string | Date) => {
         minute: '2-digit'
     });
 }
+
+export const timeAgo = (date: string | Date): string => {
+    const checkedDate = date instanceof Date ? date : new Date(date);
+    const timeDifference = (Date.now() - checkedDate.getTime()) / 1000;
+
+    if(timeDifference < 60) return 'Just now';
+    if(timeDifference < 3600) return `${Math.floor(timeDifference / 60)}m ago`;
+    if(timeDifference < 86400) return `${Math.floor(timeDifference / 3600)}h ago`;
+
+    return `${Math.floor(timeDifference / 86400)}d ago`;
+}

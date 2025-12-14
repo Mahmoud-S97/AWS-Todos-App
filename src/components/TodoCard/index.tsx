@@ -1,7 +1,7 @@
 import React, { JSX, memo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import AppIcon from '../Global/AppIcon';
-import { formatDate } from '../../utils';
+import { timeAgo } from '../../utils';
 import { APP_THEME } from '../../theme/styles';
 
 type TodoProps = {
@@ -18,16 +18,16 @@ const TodoCard = ({ name, description, completed, createdAt, className, onComple
 
     const combinedClasses = `flex-row w-[98%] self-center h-[120] p-4 bg-background-light dark:bg-background-dark border-gray-400 dark:border-gray-700 justify-between items-center rounded-xl mb-[20] ${className ?? ''}`;
 
-    const formattedDate = formatDate(createdAt);
+    const formattedTime = timeAgo(createdAt);
 
     return (
         <View style={[APP_THEME.mainShadow, { borderWidth: 2 }]} className={combinedClasses}>
             <View className='w-[70%] flex-col items-start justify-center'>
-                <Text numberOfLines={2} className={`w-full text-2xl font-bold text-text-dark dark:text-text-light mb-[5] ${completed && 'line-through'}`}>{name}</Text>
+                <Text numberOfLines={2} className={`w-full text-2xl font-bold text-text-dark dark:text-text-light mb-[8] ${completed && 'line-through'}`}>{name}</Text>
                 <Text numberOfLines={2} className='w-full text-lg font-[500] text-text-dark dark:text-text-light'>{description}</Text>
             </View>
             <View className='w-[25%] flex-col justify-center items-end'>
-                <Text className='w-full text-sm font-[500] text-right text-text-dark dark:text-text-light mb-[8]'>{formattedDate}</Text>
+                <Text className='w-full text-md font-[500] text-right text-text-dark dark:text-text-light mb-[15]'>{formattedTime}</Text>
                 <View className='w-full flex-row justify-end items-center'>
                     <TouchableOpacity activeOpacity={0.7} disabled={completed} className='w-[30] h-[30] flex-row justify-center items-center me-[8]' onPress={onComplete}>
                         <AppIcon name={completed ? 'check-circle-o' : 'circle-thin'} size={30} className={`${completed ? 'text-primary-default' : 'text-gray-500'}`} />
